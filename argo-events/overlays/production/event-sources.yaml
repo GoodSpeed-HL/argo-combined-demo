@@ -17,7 +17,7 @@ spec:
         endpoint: /argo-combined-app
         port: "12000"
         method: POST
-        url: http://webhook.34.152.36.50.nip.io
+        url: http://webhook.34.152.51.14.nip.io
       events:
         - "*"
       apiToken:
@@ -48,4 +48,4 @@ spec:
            name: github-eventsource-svc
            port:
              number: 12000
-    host: webhook.34.152.36.50.nip.io
+    host: webhook.34.152.51.14.nip.io
