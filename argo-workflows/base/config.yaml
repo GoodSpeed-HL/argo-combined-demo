@@ -4,11 +4,7 @@ metadata:
   name: workflow-controller-configmap
 data:
   containerRuntimeExecutors: |
-    - name: emissary
+    - name: k8sapi
       selector:
         matchLabels:
-          workflows.argoproj.io/container-runtime-executor: emissary
-    - name: pns
-      selector:
-        matchLabels:
-          workflows.argoproj.io/container-runtime-executor: pns
+          workflows.argoproj.io/container-runtime-executor: k8sapi
