@@ -1,4 +1,5 @@
 ---
+
 apiVersion: argoproj.io/v1alpha1
 kind: EventSource
 metadata:
@@ -6,19 +7,19 @@ metadata:
 spec:
   service:
     ports:
-      - port: 12000
-        targetPort: 12000
+    - port: 12000
+      targetPort: 12000
   github:
     argo-combined-app:
       owner: GoodSpeed-HL
       repository: argo-combined-app
       webhook:
         endpoint: /argo-combined-app
-        port: '12000'
+        port: "12000"
         method: POST
         url: http://webhook.34.152.12.60.nip.io
       events:
-        - '*'
+        - "*"
       apiToken:
         name: github-access
         key: token
@@ -27,23 +28,24 @@ spec:
       contentType: json
 
 ---
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: github
   annotations:
-    kubernetes.io/ingress.class: 'nginx'
-    ingress.kubernetes.io/ssl-redirect: 'false'
-    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: github-eventsource-svc
-                port:
-                  number: 12000
-      host: webhook.34.152.12.60.nip.io
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+           name: github-eventsource-svc
+           port:
+             number: 12000
+    host: webhook.34.152.12.60.nip.io
